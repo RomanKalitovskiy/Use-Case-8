@@ -213,3 +213,42 @@ GPT-4
   ```
 
   Now you can dispatch the `setUserDetails` action with an object containing all the user details to set them all at once in the Redux store.
+
+User
+  in the rootReducer we have next line of code:
+  function rootReducer(state = initialState, { type, payload }) {
+  sonarcloud says it is code smell, and shows next error here:
+  Default parameters should be last.
+  how to fix this problem?
+
+GPT-4
+  The error you're seeing from SonarCloud relates to best practices in JavaScript. When you provide a function with default parameters, those parameters should come last. This is because when invoking a function, any skipped parameters use their default values, and having non-default parameters after default ones can be confusing.
+
+  However, in the context of Redux reducers, this pattern of `(state = initialState, action)` is pretty standard, as the `state` should always have a default value and the `action` is always provided by the Redux library.
+
+  To address the SonarCloud warning, and still make the code readable, you can refactor the reducer slightly:
+
+  ```javascript
+  function rootReducer(state, action) {
+    if (!state) {
+      state = initialState;
+    }
+    
+    const { type, payload } = action;
+
+    switch (type) {
+      case ActionTypes.SET_USER_DETAILS:
+        return {
+          ...state,
+          firstName: payload.firstName,
+          lastName: payload.lastName,
+          email: payload.email,
+          message: payload.message,
+        };
+      default:
+        return state;
+    }
+  }
+  ```
+
+  In this refactor, we remove the default parameter, and instead, we explicitly set the `state` to `initialState` inside the reducer if it's not provided (or if it's `undefined`). This approach avoids the SonarCloud warning while still ensuring the reducer functions correctly.
