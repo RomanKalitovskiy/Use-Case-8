@@ -1,0 +1,33 @@
+User
+  Help me to create small documentation, readme.md file for my react project.
+  My project is generated using CRA.
+  The main idea is we have a form with 4 input components: first name, last name, email and message and submit button.
+  each of input component has validation:
+  The `first_name` and `last_name` fields should be validated on the presents of information 
+  The `email` field should be validated on the correctness of the email entered 
+  The `message` field should be validated on the length of the message (minimum 10 characters) 
+  when user clicks on  submit button the app will add entered values to the redux store (user should not be able to click submit button when at least one field is not valid
+  After user entered valid data, it is added to the redux store, user see alert that data was submitted successfully, and redux store data is printed into browser console.
+
+  Description should be short, max 10 Sentences.
+  Also add one more paragraph about how to run app locally
+
+GPT-4
+  ## React Form Validation Project
+
+  This project, built with Create React App (CRA), showcases a simple form with validation. The form contains four input components: `first_name`, `last_name`, `email`, and `message`. 
+
+  - The `first_name` and `last_name` fields validate for the presence of information.
+  - The `email` field checks for the correctness of the email format.
+  - The `message` field ensures a minimum length of 10 characters. 
+
+  Upon submitting the form with all fields validated, the application saves the data to the Redux store. Users receive an alert confirming the successful submission, and the entered data is simultaneously printed to the browser console.
+
+  ### Running the App Locally
+
+  To run the app locally:
+
+  1. Clone the repository.
+  2. Navigate to the project directory.
+  3. Run `npm install` to install dependencies.
+  4. Execute `npm start` to start the development server. The app should open in your default browser.
