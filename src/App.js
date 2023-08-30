@@ -1,5 +1,7 @@
-import Form from "./Form";
+import { useEffect } from "react";
+import { useStore } from "react-redux";
 import validator from "validator";
+import Form from "./Form";
 
 const data = [
   {
@@ -28,7 +30,18 @@ const data = [
   },
 ];
 
+const logStore = (store) => {
+  console.log("Store contains following values:");
+  console.table(store);
+};
+
 function App() {
+  const { subscribe, getState } = useStore();
+
+  useEffect(() => {
+    return subscribe(() => logStore(getState()));
+  }, [getState, subscribe]);
+
   return <Form data={data} />;
 }
 

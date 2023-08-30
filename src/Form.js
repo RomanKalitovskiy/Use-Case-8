@@ -46,6 +46,7 @@ export default function Form({ data }) {
 
     if (isValid(data, state)) {
       reduxDispatch(setFields(preprocessState(state)));
+      alert("Your input successfully saved to the store!")
     }
   };
 
