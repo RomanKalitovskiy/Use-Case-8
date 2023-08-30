@@ -3,7 +3,7 @@ import { useStore } from "react-redux";
 import validator from "validator";
 import Form from "./Form";
 
-const data = [
+export const data = [
   {
     name: "first_name",
     placeholder: "First Name",
