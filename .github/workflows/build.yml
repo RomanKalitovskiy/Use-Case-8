@@ -5,14 +5,25 @@ on:
       - main
   pull_request:
     types: [opened, synchronize, reopened]
+
 jobs:
-  sonarcloud:
-    name: SonarCloud
+  build-test-analyze:
+    name: Build, Test and Analyze
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+
+      # Install dependencies
+      - name: Install dependencies
+        run: npm install  # or 'yarn install' if you're using yarn
+
+      # Run tests and generate coverage
+      - name: Run tests and generate coverage
+        run: npm test -- --coverage  # or 'yarn test --coverage' if you're using yarn
+
+      # SonarCloud scan
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
